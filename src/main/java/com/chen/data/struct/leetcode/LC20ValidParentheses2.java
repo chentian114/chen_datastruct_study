@@ -4,6 +4,7 @@ package com.chen.data.struct.leetcode;
  * @desc Leetcode练习-20 Valid Parentheses 匹配括号，使用自定义的ArrayStack
  * @Author Chentian
  * @date 2020/10/26
+ * 结果：通过	  2 ms	36.7 MB
  */
 public class LC20ValidParentheses2 {
 

@@ -7,6 +7,7 @@ import java.util.List;
  * @desc 二叉树的层序遍历，使用自定义动态循环队列实现
  * @Author Chentian
  * @date 2020/10/26
+ * 结果：通过	  2 ms	38.2 MB
  */
 public class LC102LevelOrder2 {
     static class TreeNode {

@@ -6,6 +6,7 @@ import java.util.Stack;
  * @desc Leetcode练习-20 Valid Parentheses 匹配括号，使用java.util.Stack
  * @Author Chentian
  * @date 2020/10/26
+ * 结果： 通过	  2 ms	36.4 MB
  */
 
 public class LC20ValidParentheses {

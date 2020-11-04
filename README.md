@@ -5,8 +5,11 @@
 
 #### 常用数据结构
 
+1. [数组](/src/main/java/com/chen/data/struct/array)
+2. [栈](/src/main/java/com/chen/data/struct/stack)
+3. [队列](/src/main/java/com/chen/data/struct/queue)
 
-
+[Leetcode练习](/src/main/java/com/chen/data/struct/leetcode)
 
 #### 参与贡献
 
