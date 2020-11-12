@@ -22,7 +22,7 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public void add(int index, E e) {
-        if(index > size){
+        if(index < 0 || index > size){
             throw new IllegalArgumentException("index is error!");
         }
         Node newNode = new Node(e,null);
@@ -55,7 +55,7 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public void set(int index, E e) {
-        if(index >= size){
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("index is error!");
         }
         Node cur = head;
@@ -67,7 +67,7 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public E get(int index) {
-        if(index >= size){
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("index is error!");
         }
         Node cur = head;
@@ -101,7 +101,7 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public E remove(int index) {
-        if(index >= size){
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("index is error!");
         }
 

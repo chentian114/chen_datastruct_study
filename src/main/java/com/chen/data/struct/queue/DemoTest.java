@@ -1,5 +1,7 @@
 package com.chen.data.struct.queue;
 
+import com.chen.data.struct.list.LinkedListQueue;
+
 /**
  * @desc
  * @Author Chentian
@@ -29,7 +31,9 @@ public class DemoTest {
 
         checkResize(queue);
 
-
+        System.out.println("---------------");
+        queue = new LinkedListQueue<>();
+        checkQueue(queue);
     }
 
     private static void checkResize(Queue<Integer> queue) {

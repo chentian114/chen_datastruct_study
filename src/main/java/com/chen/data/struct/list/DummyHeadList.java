@@ -21,7 +21,7 @@ public class DummyHeadList<E> implements List<E>{
 
     @Override
     public void add(int index, E e) {
-        if(index > size){
+        if(index < 0 || index > size){
             throw new IllegalArgumentException("index is error!");
         }
 
@@ -49,7 +49,7 @@ public class DummyHeadList<E> implements List<E>{
 
     @Override
     public void set(int index, E e) {
-        if(index >= size){
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("index is error!");
         }
         Node cur = dummyHead.next;
@@ -61,7 +61,7 @@ public class DummyHeadList<E> implements List<E>{
 
     @Override
     public E get(int index) {
-        if(index >= size){
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("index is error!");
         }
         Node cur = dummyHead.next;
@@ -95,7 +95,7 @@ public class DummyHeadList<E> implements List<E>{
 
     @Override
     public E remove(int index) {
-        if(index >= size){
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("index is error!");
         }
         Node prev = dummyHead;
@@ -104,8 +104,10 @@ public class DummyHeadList<E> implements List<E>{
         for (int i = 0 ; i < index ; i ++){
             prev = prev.next;
         }
-        E e = prev.next.e;
-        prev.next = prev.next.next;
+        Node delNode = prev.next;
+        E e = delNode.e;
+        prev.next = delNode.next;
+        delNode.next = null;
         size--;
 
         return e;
