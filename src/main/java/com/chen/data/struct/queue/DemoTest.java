@@ -34,6 +34,11 @@ public class DemoTest {
         System.out.println("---------------");
         queue = new LinkedListQueue<>();
         checkQueue(queue);
+
+        System.out.println("---------------");
+        queue = new StackToQueue<>();
+        checkQueue(queue);
+
     }
 
     private static void checkResize(Queue<Integer> queue) {
