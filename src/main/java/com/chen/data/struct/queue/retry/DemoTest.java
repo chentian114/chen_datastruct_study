@@ -17,6 +17,14 @@ public class DemoTest {
 
         checkResize(queue);
 
+        System.out.println("---------------");
+        queue = new LoopQueue<>();
+        checkQueue(queue);
+        try {
+            checkResize(queue);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 

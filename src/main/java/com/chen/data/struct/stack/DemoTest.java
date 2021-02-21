@@ -9,6 +9,13 @@ public class DemoTest {
     public static void main(String[] args) {
 
         Stack<Integer> stack = new ArrayStack<>();
+        testStack(stack);
+
+        Stack<Integer> stack2 = new QueueToStack<>();
+        testStack(stack2);
+    }
+
+    private static void testStack(Stack<Integer> stack) {
         for (int i = 0 ; i < 5 ; i++){
             stack.push(i);
             System.out.println(stack);
@@ -20,6 +27,5 @@ public class DemoTest {
         }
 
         System.out.println(stack.peek()+ " , "+stack.getSize());
-
     }
 }
