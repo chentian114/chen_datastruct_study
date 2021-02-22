@@ -8,6 +8,7 @@
 1. [数组](/src/main/java/com/chen/data/struct/array)
 2. [栈](/src/main/java/com/chen/data/struct/stack)
 3. [队列](/src/main/java/com/chen/data/struct/queue)
+4. [链表](/src/main/java/com/chen/data/struct/list)
 
 [Leetcode练习](/src/main/java/com/chen/data/struct/leetcode)
 
