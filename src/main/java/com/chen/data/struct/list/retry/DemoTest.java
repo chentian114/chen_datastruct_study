@@ -1,6 +1,8 @@
 package com.chen.data.struct.list.retry;
 
 import com.chen.data.struct.list.List;
+import com.chen.data.struct.queue.Queue;
+import com.chen.data.struct.stack.Stack;
 
 /**
  * @author: Chentian
@@ -12,6 +14,16 @@ public class DemoTest {
 
         List<Integer> list = new LinkedList<>();
         testList(list);
+
+
+        List<Integer> list2 = new DummyHeadList<>();
+        testList(list2);
+
+        Stack<Integer> stack = new LinkedListStack<>();
+        testStack(stack);
+
+        Queue<Integer> queue = new LinkedListQueue<>();
+        checkQueue(queue);
 
     }
     private static void testList(List<Integer> list) {
@@ -49,5 +61,33 @@ public class DemoTest {
         System.out.println(list.get(0));
 
         System.out.println("====================================");
+    }
+
+    private static void testStack(Stack<Integer> stack) {
+        for (int i = 0 ; i < 5 ; i++){
+            stack.push(i);
+            System.out.println(stack);
+        }
+
+        for (int i = 0 ; i < 3 ; i++){
+            stack.pop();
+            System.out.println(stack);
+        }
+
+        System.out.println(stack.peek()+ " , "+stack.getSize());
+    }
+
+    private static void checkQueue(Queue<Integer> queue) {
+        for (int i = 0 ; i < 5 ; i++){
+            queue.enqueue(i);
+            System.out.println(queue);
+        }
+
+        for (int i = 0 ; i < 3 ; i++){
+            Integer e = queue.dequeue();
+            System.out.println("dequeue e="+e+" "+queue);
+        }
+
+        System.out.println(queue.getFront()+" "+queue.getSize());
     }
 }
