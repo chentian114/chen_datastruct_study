@@ -2,6 +2,8 @@ package com.chen.data.struct.queue.retry;
 
 
 import com.chen.data.struct.queue.Queue;
+import com.chen.data.struct.queue.QueueAlgorithmComparator;
+import static com.chen.data.struct.queue.QueueAlgorithmComparator.QueueMethodEnum;
 
 /**
  * @desc
@@ -25,6 +27,7 @@ public class DemoTest {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        testByComparator1(500000,5,50,5);
 
     }
 
@@ -51,5 +54,26 @@ public class DemoTest {
         }
 
         System.out.println(queue.getFront()+" "+queue.getSize());
+    }
+
+    private static void testByComparator1(int testTimes,int maxSize,int maxValue,int maxMethodSize){
+
+        boolean result = false;
+        for (int i = 0 ; i < testTimes; i++){
+
+            Queue<Integer> queue = new LoopQueue<>();
+            java.util.LinkedList<Integer> correctQueue = QueueAlgorithmComparator.comparator();
+
+            int[] data = QueueAlgorithmComparator.generateRandomData(maxSize,maxValue);
+            QueueMethodEnum[] methodEnums = QueueAlgorithmComparator.generateRandomMethod(maxMethodSize);
+
+            result = QueueAlgorithmComparator.isEqual(queue, correctQueue, methodEnums, data);
+            if(!result){
+                return;
+            }
+        }
+        if(result){
+            System.out.println("----------->comparator is ok!<---------------");
+        }
     }
 }

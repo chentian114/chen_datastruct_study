@@ -2,6 +2,8 @@ package com.chen.data.struct.queue;
 
 import com.chen.data.struct.list.LinkedListQueue;
 
+import static com.chen.data.struct.queue.QueueAlgorithmComparator.QueueMethodEnum;
+
 /**
  * @desc
  * @Author Chentian
@@ -15,6 +17,7 @@ public class DemoTest {
         checkQueue(queue);
 
         checkResize(queue);
+        testByComparator1(500000,5,50,5);
 
         System.out.println("---------------");
         queue = new LoopQueue<>();
@@ -31,6 +34,7 @@ public class DemoTest {
 
         checkResize(queue);
 
+        testByComparator2(500000,5,50,5);
         System.out.println("---------------");
         queue = new LinkedListQueue<>();
         checkQueue(queue);
@@ -38,6 +42,8 @@ public class DemoTest {
         System.out.println("---------------");
         queue = new StackToQueue<>();
         checkQueue(queue);
+
+        testByComparator3(500000,5,50,5);
 
     }
 
@@ -64,5 +70,68 @@ public class DemoTest {
         }
 
         System.out.println(queue.getFront()+" "+queue.getSize());
+    }
+
+    private static void testByComparator1(int testTimes,int maxSize,int maxValue,int maxMethodSize){
+
+        boolean result = false;
+        for (int i = 0 ; i < testTimes; i++){
+
+            Queue<Integer> queue = new ArrayQueue<>();
+            java.util.LinkedList<Integer> correctQueue = QueueAlgorithmComparator.comparator();
+
+            int[] data = QueueAlgorithmComparator.generateRandomData(maxSize,maxValue);
+            QueueMethodEnum[] methodEnums = QueueAlgorithmComparator.generateRandomMethod(maxMethodSize);
+
+            result = QueueAlgorithmComparator.isEqual(queue, correctQueue, methodEnums, data);
+            if(!result){
+                return;
+            }
+        }
+        if(result){
+            System.out.println("----------->comparator is ok!<---------------");
+        }
+    }
+
+    private static void testByComparator2(int testTimes,int maxSize,int maxValue,int maxMethodSize){
+
+        boolean result = false;
+        for (int i = 0 ; i < testTimes; i++){
+
+            Queue<Integer> queue = new DynamicLoopQueue<>();
+            java.util.LinkedList<Integer> correctQueue = QueueAlgorithmComparator.comparator();
+
+            int[] data = QueueAlgorithmComparator.generateRandomData(maxSize,maxValue);
+            QueueMethodEnum[] methodEnums = QueueAlgorithmComparator.generateRandomMethod(maxMethodSize);
+
+            result = QueueAlgorithmComparator.isEqual(queue, correctQueue, methodEnums, data);
+            if(!result){
+                return;
+            }
+        }
+        if(result){
+            System.out.println("----------->comparator is ok!<---------------");
+        }
+    }
+
+    private static void testByComparator3(int testTimes,int maxSize,int maxValue,int maxMethodSize){
+
+        boolean result = false;
+        for (int i = 0 ; i < testTimes; i++){
+
+            Queue<Integer> queue = new StackToQueue<>();
+            java.util.LinkedList<Integer> correctQueue = QueueAlgorithmComparator.comparator();
+
+            int[] data = QueueAlgorithmComparator.generateRandomData(maxSize,maxValue);
+            QueueMethodEnum[] methodEnums = QueueAlgorithmComparator.generateRandomMethod(maxMethodSize);
+
+            result = QueueAlgorithmComparator.isEqual(queue, correctQueue, methodEnums, data);
+            if(!result){
+                return;
+            }
+        }
+        if(result){
+            System.out.println("----------->comparator is ok!<---------------");
+        }
     }
 }

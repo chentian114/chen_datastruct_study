@@ -11,9 +11,6 @@ import java.util.Random;
  */
 public class ArrayAlgorithmComparator {
 
-
-
-
     public enum ArrayMethodEnum{
         isEmpty,getSize,add,addLast,addFirst,get,contains,set,remove,removeFirst,removeLast,removeElement
     }
