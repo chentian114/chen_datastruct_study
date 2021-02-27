@@ -3,6 +3,8 @@ package com.chen.data.struct.list.retry;
 import com.chen.data.struct.list.List;
 import com.chen.data.struct.queue.Queue;
 import com.chen.data.struct.stack.Stack;
+import com.chen.data.struct.list.ListAlgorithmComparator;
+import static com.chen.data.struct.list.ListAlgorithmComparator.ListMethodEnum;
 
 /**
  * @author: Chentian
@@ -14,10 +16,12 @@ public class DemoTest {
 
         List<Integer> list = new LinkedList<>();
         testList(list);
+        testByComparator1(500000,5,50,5);
 
 
         List<Integer> list2 = new DummyHeadList<>();
         testList(list2);
+        testByComparator2(500000,5,50,5);
 
         Stack<Integer> stack = new LinkedListStack<>();
         testStack(stack);
@@ -90,4 +94,48 @@ public class DemoTest {
 
         System.out.println(queue.getFront()+" "+queue.getSize());
     }
+
+    private static void testByComparator1(int testTimes,int maxSize,int maxValue,int maxMethodSize){
+
+        boolean result = false;
+        for (int i = 0 ; i < testTimes; i++){
+
+            List<Integer> list = new LinkedList<>();
+            java.util.LinkedList<Integer> correctList = ListAlgorithmComparator.comparator();
+
+            int[] data = ListAlgorithmComparator.generateRandomData(maxSize,maxValue);
+            ListMethodEnum[] methodEnums = ListAlgorithmComparator.generateRandomMethod(maxMethodSize);
+
+            result = ListAlgorithmComparator.isEqual(list, correctList, methodEnums, data);
+            if(!result){
+                return;
+            }
+        }
+        if(result){
+            System.out.println("----------->comparator is ok!<---------------");
+        }
+    }
+
+
+    private static void testByComparator2(int testTimes,int maxSize,int maxValue,int maxMethodSize){
+
+        boolean result = false;
+        for (int i = 0 ; i < testTimes; i++){
+
+            List<Integer> list = new DummyHeadList<>();
+            java.util.LinkedList<Integer> correctList = ListAlgorithmComparator.comparator();
+
+            int[] data = ListAlgorithmComparator.generateRandomData(maxSize,maxValue);
+            ListMethodEnum[] methodEnums = ListAlgorithmComparator.generateRandomMethod(maxMethodSize);
+
+            result = ListAlgorithmComparator.isEqual(list, correctList, methodEnums, data);
+            if(!result){
+                return;
+            }
+        }
+        if(result){
+            System.out.println("----------->comparator is ok!<---------------");
+        }
+    }
+
 }

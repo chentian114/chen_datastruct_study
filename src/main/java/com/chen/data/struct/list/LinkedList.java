@@ -149,10 +149,11 @@ public class LinkedList<E> implements List<E>{
         Node prev = head;
         for (int i = 0 ; i < size-1 ; i++){
             if(prev.next.e.equals(e)){
-                prev.next.next = prev.next;
+                prev.next = prev.next.next;
                 size--;
                 return;
             }
+            prev = prev.next;
         }
     }
 

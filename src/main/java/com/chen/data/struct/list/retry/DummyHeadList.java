@@ -141,6 +141,7 @@ public class DummyHeadList<E> implements List<E> {
                 size--;
                 return;
             }
+            prevNode = prevNode.next;
         }
 
     }
