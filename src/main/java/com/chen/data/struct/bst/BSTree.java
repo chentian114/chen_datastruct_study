@@ -1,6 +1,7 @@
 package com.chen.data.struct.bst;
 
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -10,7 +11,6 @@ import java.util.Stack;
  */
 public class BSTree<E extends Comparable<E>> {
 
-
     private class Node{
         private E value;
         private Node left;
@@ -18,11 +18,24 @@ public class BSTree<E extends Comparable<E>> {
         private Node(E value){
             this.value = value;
         }
+        private Node(E value, Node left, Node right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
     }
 
     private int size = 0;
     private Node root;
 
+
+    public int size(){
+        return size;
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
+    }
 
     public void add(E value){
         root = add(root,value);
@@ -60,10 +73,12 @@ public class BSTree<E extends Comparable<E>> {
     }
 
     public String preOrder(){
-        StringBuilder sbr = new StringBuilder("preOrder data[");
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
         preOrder(root,sbr);
         delLastComma(sbr);
-        sbr.append("]");
         return sbr.toString();
     }
 
@@ -77,34 +92,37 @@ public class BSTree<E extends Comparable<E>> {
     }
 
     public String preOrderNR(){
-        StringBuilder sbr = new StringBuilder("preOrder data[");
-        if(root != null) {
-            Stack<Node> stack = new Stack<>();
-            stack.push(root);
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
 
-            while (!stack.isEmpty()) {
-                Node node = stack.pop();
-                sbr.append(node.value).append(",");
-                if(node.right != null){
-                    stack.push(node.right);
-                }
-                if(node.left != null){
-                    stack.push(node.left);
-                }
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            sbr.append(node.value).append(",");
+            if(node.right != null){
+                stack.push(node.right);
+            }
+            if(node.left != null){
+                stack.push(node.left);
             }
         }
         delLastComma(sbr);
-        sbr.append("]");
         return sbr.toString();
     }
 
     public String inOrder(){
-        StringBuilder sbr = new StringBuilder("inOrder data[");
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
 
         inOrder(root,sbr);
 
         delLastComma(sbr);
-        sbr.append("]");
         return sbr.toString();
     }
 
@@ -119,7 +137,10 @@ public class BSTree<E extends Comparable<E>> {
     }
 
     public String inOrderNR(){
-        StringBuilder sbr = new StringBuilder("inOrder data[");
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
         Stack<Node> stack = new Stack<>();
         Node curNode = root;
 
@@ -134,15 +155,16 @@ public class BSTree<E extends Comparable<E>> {
             }
         }
         delLastComma(sbr);
-        sbr.append("]");
         return sbr.toString();
     }
 
     public String postOrder(){
-        StringBuilder sbr = new StringBuilder("postOrder data[");
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
         postOrder(root,sbr);
         delLastComma(sbr);
-        sbr.append("]");
         return sbr.toString();
     }
 
@@ -157,7 +179,10 @@ public class BSTree<E extends Comparable<E>> {
     }
 
     public String postOrderNR(){
-        StringBuilder sbr = new StringBuilder("postOrder data[");
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
 
         Stack<Node> orderStack = new Stack<>();
         Stack<E> outStack = new Stack<>();
@@ -177,10 +202,158 @@ public class BSTree<E extends Comparable<E>> {
         }
 
         delLastComma(sbr);
-        sbr.append("]");
         return sbr.toString();
     }
 
+
+    public String levelOrder(){
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
+        LinkedList<Node> queue = new LinkedList<>();
+        if(root != null) {
+            queue.offer(root);
+        }
+
+        while (!queue.isEmpty()){
+            Node node = queue.remove();
+            sbr.append(node.value).append(",");
+            if(node.left != null){
+                queue.offer(node.left);
+            }
+            if(node.right != null){
+                queue.offer(node.right);
+            }
+        }
+
+        delLastComma(sbr);
+        return sbr.toString();
+    }
+
+
+    public E minimum(){
+        return minimum(root);
+    }
+
+    private E minimum(Node node) {
+        if(node == null){
+            return null;
+        }
+
+        if(node.left != null){
+           return minimum(node.left);
+        }
+        else {
+            return node.value;
+        }
+    }
+
+    public E maximum(){
+        return maximum(root);
+    }
+
+    private E maximum(Node node) {
+        if(node == null){
+            return null;
+        }
+
+        if(node.right != null){
+            return maximum(node.right);
+        }
+        else {
+            return node.value;
+        }
+    }
+
+    public void removeMin(){
+        root = removeMin(root);
+    }
+
+    private Node removeMin(Node node) {
+        if(node == null){
+            return null;
+        }
+
+        if(node.left != null){
+            node.left = removeMin(node.left);
+            return node;
+        }
+        else {
+            Node right = node.right;
+            node.right = null;
+            size--;
+            return right;
+        }
+    }
+
+    public void removeMax(){
+        root = removeMax(root);
+    }
+
+    private Node removeMax(Node node) {
+        if(node == null){
+            return null;
+        }
+
+        if(node.right != null){
+            node.right = removeMax(node.right);
+            return node;
+        }
+        else {
+            Node left = node.left;
+            node.left = null;
+            size--;
+            return left;
+        }
+    }
+
+    public void remove(E e){
+        root = remove(root,e);
+    }
+
+    private Node remove(Node node, E value) {
+        if(node == null){
+            return null;
+        }
+
+        if(node.value.compareTo(value) > 0){
+            node.left = remove(node.left,value);
+            return node;
+        }
+        else if(node.value.compareTo(value) < 0){
+            node.right = remove(node.right,value);
+            return node;
+        }
+        else {
+            if(node.left == null && node.right == null){
+                size --;
+                return null;
+            }
+            else if(node.left != null && node.right == null){
+                Node left = node.left;
+                node.left = null;
+                size--;
+                return left;
+            }
+            else if(node.left == null && node.right != null){
+                Node right = node.right;
+                node.right = null;
+                size--;
+                return right;
+            }
+            else {
+                E successor = minimum(node.right);
+                Node left = node.left;
+                Node right = removeMin(node.right);
+                node.left = node.right = null;
+
+                Node newNode = new Node(successor,left,right);
+                return newNode;
+
+            }
+        }
+    }
 
     private void delLastComma(StringBuilder sbr) {
         int index = sbr.lastIndexOf(",");
