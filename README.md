@@ -9,6 +9,8 @@
 2. [栈](/src/main/java/com/chen/data/struct/stack)
 3. [队列](/src/main/java/com/chen/data/struct/queue)
 4. [链表](/src/main/java/com/chen/data/struct/list)
+5. [二叉搜索树](/src/main/java/com/chen/data/struct/bst)
+
 
 [Leetcode练习](/src/main/java/com/chen/data/struct/leetcode)
 
