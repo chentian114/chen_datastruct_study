@@ -114,6 +114,47 @@ public class BSTree<E extends Comparable<E>> {
         return sbr.toString();
     }
 
+    class SystemNode{
+        Node node;
+        String times;
+        private SystemNode(Node node,String times){
+            this.node = node;
+            this.times = times;
+        }
+    }
+    public String preOrderSystemNR(){
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
+        Stack<SystemNode> stack = new Stack<>();
+        stack.push(new SystemNode(root,"one"));
+
+        while (!stack.isEmpty()){
+            SystemNode systemNode = stack.pop();
+            switch (systemNode.times){
+                case "one":
+                    sbr.append(systemNode.node.value).append(",");
+                    stack.push(new SystemNode(systemNode.node,"two"));
+                    if(systemNode.node.left != null){
+                        stack.push(new SystemNode(systemNode.node.left,"one"));
+                    }
+                    break;
+                case "two":
+                    stack.push(new SystemNode(systemNode.node,"three"));
+                    if(systemNode.node.right != null){
+                        stack.push(new SystemNode(systemNode.node.right,"one"));
+                    }
+                    break;
+                case "three":
+                    break;
+            }
+        }
+
+        delLastComma(sbr);
+        return sbr.toString();
+    }
+
     public String inOrder(){
         if(root == null){
             return null;
@@ -154,6 +195,39 @@ public class BSTree<E extends Comparable<E>> {
                 curNode = node.right;
             }
         }
+        delLastComma(sbr);
+        return sbr.toString();
+    }
+
+    public String inOrderSystemNR(){
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
+        Stack<SystemNode> stack = new Stack<>();
+        stack.push(new SystemNode(root,"one"));
+
+        while (!stack.isEmpty()){
+            SystemNode systemNode = stack.pop();
+            switch (systemNode.times){
+                case "one":
+                    stack.push(new SystemNode(systemNode.node,"two"));
+                    if(systemNode.node.left != null){
+                        stack.push(new SystemNode(systemNode.node.left,"one"));
+                    }
+                    break;
+                case "two":
+                    sbr.append(systemNode.node.value).append(",");
+                    stack.push(new SystemNode(systemNode.node,"three"));
+                    if(systemNode.node.right != null){
+                        stack.push(new SystemNode(systemNode.node.right,"one"));
+                    }
+                    break;
+                case "three":
+                    break;
+            }
+        }
+
         delLastComma(sbr);
         return sbr.toString();
     }
@@ -199,6 +273,39 @@ public class BSTree<E extends Comparable<E>> {
         }
         while (!outStack.isEmpty()){
             sbr.append(outStack.pop()).append(",");
+        }
+
+        delLastComma(sbr);
+        return sbr.toString();
+    }
+
+    public String postOrderSystemNR(){
+        if(root == null){
+            return null;
+        }
+        StringBuilder sbr = new StringBuilder();
+        Stack<SystemNode> stack = new Stack<>();
+        stack.push(new SystemNode(root,"one"));
+
+        while (!stack.isEmpty()){
+            SystemNode systemNode = stack.pop();
+            switch (systemNode.times){
+                case "one":
+                    stack.push(new SystemNode(systemNode.node,"two"));
+                    if(systemNode.node.left != null){
+                        stack.push(new SystemNode(systemNode.node.left,"one"));
+                    }
+                    break;
+                case "two":
+                    stack.push(new SystemNode(systemNode.node,"three"));
+                    if(systemNode.node.right != null){
+                        stack.push(new SystemNode(systemNode.node.right,"one"));
+                    }
+                    break;
+                case "three":
+                    sbr.append(systemNode.node.value).append(",");
+                    break;
+            }
         }
 
         delLastComma(sbr);

@@ -21,12 +21,15 @@ public class DemoTest {
 
         System.out.println("preOrder:"+bst.preOrder());
         System.out.println("preOrderNR:"+bst.preOrderNR());
+        System.out.println("preOrderSystemNR:"+bst.preOrderSystemNR());
 
         System.out.println("inOrder:"+bst.inOrder());
         System.out.println("inOrderNR:"+bst.inOrderNR());
+        System.out.println("inOrderSystemNR:"+bst.inOrderSystemNR());
 
         System.out.println("postOrder:"+bst.postOrder());
         System.out.println("postOrderNR:"+bst.postOrderNR());
+        System.out.println("postOrderSystemNR:"+bst.postOrderSystemNR());
 
         System.out.println("levelOrder:"+bst.levelOrder());
 
@@ -43,11 +46,18 @@ public class DemoTest {
         bst.remove(5);
         System.out.println(bst);
 
-        checkCorrectBST();
+//        checkCorrectBST();
 
-        String a = "a";
-        String b = null;
-        System.out.println(a.equals(b));
+        int[] arrs = {13,23,38,47,30};
+        BSTree<Integer> bst2 = new BSTree<>();
+        for (int i = 0 ; i < arrs.length ; i++){
+            bst2.add(arrs[i]);
+        }
+        System.out.println(bst2.postOrder());
+        System.out.println(bst2.postOrderNR());
+        System.out.println(bst2.postOrderSystemNR());
+        System.out.println("---");
+
     }
 
     public static void checkCorrectBST(){

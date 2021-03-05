@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class BSTAlgorithmComparator {
     public enum BSTMethodEnum{
-        size,isEmpty,add,contains,preOrder,preOrderNR,inOrder,inOrderNR,postOrder,postOrderNR,levelOrder,minimum,maximum,removeMin,removeMax,remove
+        size,isEmpty,add,contains,preOrder,preOrderNR,preOrderSystemNR,inOrder,inOrderNR,inOrderSystemNR,postOrder,postOrderNR,postOrderSystemNR,levelOrder,minimum,maximum,removeMin,removeMax,remove
     }
 
     public static CorrectBST<Integer> comparator(){
@@ -87,6 +87,12 @@ public class BSTAlgorithmComparator {
                     if (compareOrderResult(bst, correctBST, methodEnums, data, cmd, preOrderNR1, preOrderNR2))
                         return false;
                     break;
+                case preOrderSystemNR:
+                    String preOrderSysNR1 = correctBST.preOrderNR();
+                    String preOrderSysNR2 = bst.preOrderSystemNR();
+                    if (compareOrderResult(bst, correctBST, methodEnums, data, cmd, preOrderSysNR1, preOrderSysNR2))
+                        return false;
+                    break;
                 case inOrder:
                     String inOrder1 = correctBST.inOrder();
                     String inOrder2 = bst.inOrder();
@@ -99,6 +105,12 @@ public class BSTAlgorithmComparator {
                     if (compareOrderResult(bst, correctBST, methodEnums, data, cmd, inOrderNR1, inOrderNR2))
                         return false;
                     break;
+                case inOrderSystemNR:
+                    String inOrderSysNR1 = correctBST.inOrder();
+                    String inOrderSysNR2 = bst.inOrderSystemNR();
+                    if (compareOrderResult(bst, correctBST, methodEnums, data, cmd, inOrderSysNR1, inOrderSysNR2))
+                        return false;
+                    break;
                 case postOrder:
                     String postOrder1 = correctBST.postOrder();
                     String postOrder2 = bst.postOrder();
@@ -109,6 +121,12 @@ public class BSTAlgorithmComparator {
                     String postOrderNR1 = correctBST.postOrder();
                     String postOrderNR2 = bst.postOrderNR();
                     if (compareOrderResult(bst, correctBST, methodEnums, data, cmd, postOrderNR1, postOrderNR2))
+                        return false;
+                    break;
+                case postOrderSystemNR:
+                    String postOrderSysNR1 = correctBST.postOrder();
+                    String postOrderSysNR2 = bst.postOrderSystemNR();
+                    if (compareOrderResult(bst, correctBST, methodEnums, data, cmd, postOrderSysNR1, postOrderSysNR2))
                         return false;
                     break;
                 case levelOrder:
