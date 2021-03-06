@@ -224,15 +224,71 @@ n为树中节点个数，h为树的深度, 在满二叉树的情况下，h = log
 - 查找contains：O(h)  -> 平均为：O(logn) ，最差情况：O(n)
 - 删除remove：  O(h)  -> 平均为：O(logn) ，最差情况：O(n)
 
-二分搜索树可能会退化成链表。
+**二叉搜索树性能问题：**
+- 二分搜索树中数据以满二叉树存放时，在二叉搜索树中进行增、删、查操作达到最理想的情况，时间复杂度为 O(logn); 
+- 但当数据以顺序的方式添加进二分搜索树时，二分搜索树会退化成链表，增、删、查操作达到最差情况，时间复杂度为 O(n)。
+- 解决方法：平衡二叉树，避免二叉树退化成链表。
+
+## 集合与映射
+
+二叉搜索树不通盛放重复元素，非常好的实现“集合”的底层数据结构。
+
+**集合：**
+- 集合中不能盛放重复元素；
+- 典型应用：
+  - 客户统计
+  - 词汇量统计
+- 使用二叉搜索树实现集合。
+
+**Set<E>:**
+- void add(E e); 添加元素
+- void remove(E e);  删除元素
+- boolean contains(E e); 是否存在某元素
+- int getSize();  获取集合中元素数量
+- boolean isEmpty(); 是否为空
+
+
+**映射**：
+- 存储（键，值）数据对的数据结构(key, value)
+- 根据键(key)，寻找值 (value)
+- 非常容易使用二叉搜索树实现
+- 应用：
+  - 字典： 单词 - 解释
+  - 名册： 身份证 - 人
+  - 车辆管理： 车牌号 - 车
+  - 词频统计： 单词 - 频率
+
+**使用二叉搜索树实现映射节点结构：**
+```
+calss Node{
+    K key;
+    V value;
+    Node left;
+    Node right;
+}
+```
+
+**MAP<K,V>:**
+- void add(K k, V v);    添加元素
+- V remove(K k);         删除元素
+- boolean contains(K k); 是否包含元素
+- V get(K k);            根据键获取元素
+- void set(K k, V v);    根据键设置元素
+- int getSize();         获取映射键值对数量
+- boolean isEmpty();     是否为空
+
 
 ## 实现
 
 1. 二叉搜索树实现
-2. Leetcode 804.Unique Morse Code Words 
+2. Leetcode 804.Unique Morse Code Words 唯一摩尔斯密码词
 3. Leetcode 144.Binary Tree Preorder Traversal 二叉树前序遍历
 4. Leetcode 94.binary-tree-inorder-traversal 二叉树中序遍历
 5. Leetcode 145.binary-tree-postorder-traversal 二叉树后序遍历
+6. 基于二叉搜索树实现集合
+7. 基于二叉搜索树实现映射
+7. Leetcode 349.Intersection of Two Arrays  两个数组的交集
+7. Leetcode 350.Intersection of Two Arrays II  两个数组的交集
 
 ### 二叉搜索树实现
 
@@ -248,8 +304,11 @@ n为树中节点个数，h为树的深度, 在满二叉树的情况下，h = log
 - public void postOrder();  二分搜索树的后序遍历
 - private void postOrder(Node node);  后序遍历以node为根的二分搜索树，递归算法
 - public void preOrderNR(); 二分搜索树非递归前序遍历
+- public void preOrderSystemNR(); 二分搜索树非递归前序遍历(模拟系统栈)
 - public void inOrderNR();  二分搜索树非递归中序遍历
+- public void inOrderSystemNR();  二分搜索树非递归中序遍历(模拟系统栈)
 - public void postOrderNR();    二分搜索树非递归后序遍历
+- public void postOrderSystemNR();    二分搜索树非递归后序遍历(模拟系统栈)
 - public void levelOrder(); 二分搜索树的层序遍历
 - public E minimum();   寻找二分搜索树的最小元素
 - private Node minimum(Node node);  返回以node为根的二分搜索树的最小值所在的节点
@@ -262,32 +321,52 @@ n为树中节点个数，h为树的深度, 在满二叉树的情况下，h = log
 - public void remove(E e);  从二分搜索树中删除元素为e的节点
 - private Node remove(Node node, E e);  删除以node为根的二分搜索树中值为e的节点，递归算法；返回删除节点后新的二分搜索树的根
 
-**参考代码：** com.chen.data.struct.bst.BSTree
+**参考代码：** [com.chen.data.struct.bst.BSTree](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 ### Leetcode 804.Unique Morse Code Words 唯一摩尔斯密码词
 
 https://leetcode-cn.com/problems/unique-morse-code-words/
 
-**参考代码：** com.chen.data.struct.bst.Leetcode804UniqueMorseCodeWords
+**参考代码：** [com.chen.data.struct.bst.Leetcode804UniqueMorseCodeWords](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 ### Leetcode 144.Binary Tree Preorder Traversal 二叉树前序遍历
 
 https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
 
-**参考代码：** com.chen.data.struct.bst.Leetcode144BinaryTreePreorderTraversal
+**参考代码：** [com.chen.data.struct.bst.Leetcode144BinaryTreePreorderTraversal](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 ### Leetcode 94.binary-tree-inorder-traversal 二叉树中序遍历
 
 https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
 
-**参考代码：** com.chen.data.struct.bst.Leetcode94BinaryTreeInorderTraversal
+**参考代码：** [com.chen.data.struct.bst.Leetcode94BinaryTreeInorderTraversal](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 ### Leetcode 145.binary-tree-postorder-traversal 二叉树后序遍历
 
-https://leetcode-cn.com/problems/binary-tree-postorder-traversal/https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
+https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
 
-**参考代码：** com.chen.data.struct.bst.Leetcode145BinaryTreePostorderTraversal
+**参考代码：** [com.chen.data.struct.bst.Leetcode145BinaryTreePostorderTraversal](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
+### 基于二叉搜索树实现集合
+
+**参考代码：** [com.chen.data.struct.bst.BSTSet](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
+
+### 基于二叉搜索树实现映射
+
+**参考代码：** [com.chen.data.struct.bst.BSTMap](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
+
+### Leetcode 349.Intersection of Two Arrays  两个数组的交集
+
+https://leetcode-cn.com/problems/intersection-of-two-arrays/
+
+**参考代码：** [com.chen.data.struct.bst.Leetcode349IntersectionOfTwoArrays](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
+
+
+### Leetcode 350.Intersection of Two Arrays II  两个数组的交集
+
+https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
+
+**参考代码：** [com.chen.data.struct.bst.Leetcode350IntersectionOfTwoArrays](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 ## 相关链接
 
