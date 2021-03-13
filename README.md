@@ -13,6 +13,7 @@
 6. [堆](/src/main/java/com/chen/data/struct/heap)
 7. [线段树](/src/main/java/com/chen/data/struct/segment)
 8. [字典树Trie](/src/main/java/com/chen/data/struct/trie)
+8. [并查集](/src/main/java/com/chen/data/struct/unionfind)
 
 
 [Leetcode练习](/src/main/java/com/chen/data/struct/leetcode)

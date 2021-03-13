@@ -49,7 +49,6 @@ public class SegmentAlgorithmComparator {
         return methods;
     }
 
-//    public static boolean isEqual(SegmentTree2<Integer> segmentTree,CorrectSegmentTree<Integer> correctSegment, SegmentMethodEnum[] methodEnums, Integer[] data){
     public static boolean isEqual(SegmentTree<Integer> segmentTree, CorrectSegmentTree<Integer> correctSegment, SegmentMethodEnum[] methodEnums, Integer[] data){
             Random random = new Random();
         try {
@@ -77,7 +76,6 @@ public class SegmentAlgorithmComparator {
                     case set:
                         nextInt = random.nextInt(correctSegment.getSize());
                         Integer nextValue = correctSegment.get(random.nextInt(correctSegment.getSize()));
-                        System.out.println("nextInt="+nextInt+" nextValue="+nextValue);
                         correctSegment.set(nextInt, nextValue);
                         segmentTree.set(nextInt, nextValue);
                         break;
@@ -85,7 +83,6 @@ public class SegmentAlgorithmComparator {
                         int left1 = random.nextInt(correctSegment.getSize());
                         int right1 = random.nextInt(correctSegment.getSize());
                         Integer val = random.nextInt(10);
-                        System.out.println("left1="+left1+" right1="+right1+" val="+val);
                         if(left1 < right1) {
                             correctSegment.batchUpdate(left1, right1,val);
                             segmentTree.batchUpdate(left1, right1,val);

@@ -147,8 +147,9 @@
 
 1. 使用数组实现线段树
 2. 使用二叉树实现线段树
-3. Leetcode 303. Range Sum Query - Immutable
-4. Leetcode 307. Range Sum Query - Mutable
+3. 线段树区间修改使用Lazy优化
+4. Leetcode 303. Range Sum Query - Immutable
+5. Leetcode 307. Range Sum Query - Mutable
 
 ###  使用数组实现线段树
 
@@ -164,12 +165,17 @@ SegmentTree
 - public void set(int index, E e) 将index位置的值，更新为e
     - private void set(int treeIndex, int l, int r, int index, E e)  在以treeIndex为根的线段树中更新index的值为e
 
-**参考代码：** [com.chen.data.struct.segment.SegmentTree](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/segment)
+**参考代码：** [com.chen.data.struct.segment.SegmentTree1](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/segment)
 
 ### 使用二叉树实现线段树
 
 
 **参考代码：** [com.chen.data.struct.segment.SegmentTree2](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/segment)
+
+### 线段树区间修改使用Lazy优化
+
+**参考代码：** [com.chen.data.struct.segment.SegmentTree3](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/segment)
+
 
 ### Leetcode 303. Range Sum Query - Immutable 区域和检索 - 数组不可变
 

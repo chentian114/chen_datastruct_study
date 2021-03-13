@@ -11,26 +11,27 @@ public class DemoTest {
     public static void main(String[] args) {
 
         Integer[] nums = {-2,0,3,-5,2,-1};
-//        testSegment1(nums);
+        testSegment1(nums);
 
-//        testSegment2(nums);
+        testSegment2(nums);
 
         testSegment3();
-/*
+
+        Integer[] datas = SegmentAlgorithmComparator.generateRandom(10000, 30);
+        int testTimes = 10000;
         System.out.print("segment1 batchUpdate:");
-        benchMark(new SegmentTree1<>(nums,(a,b)->a+b));
+        benchMark(testTimes,new SegmentTree1<>(datas,(a,b)->a+b));
         System.out.print("segment2 batchUpdate:");
-        benchMark(new SegmentTree2<>(nums,(a,b)->a+b));
+        benchMark(testTimes,new SegmentTree2<>(datas,(a,b)->a+b));
         System.out.print("segment3 batchUpdate:");
-        benchMark(new SegmentTree3<>(nums,(a,b)->a+b));*/
+        benchMark(testTimes,new SegmentTree3<>(datas,(a,b)->a+b));
 
     }
 
-    private static void benchMark(SegmentTree<Integer> segmentTree){
+    private static void benchMark(int testTimes, SegmentTree<Integer> segmentTree){
         long start = System.currentTimeMillis();
-        int maxSize = 10000000;
         Random random = new Random();
-        for (int i = 0 ; i < maxSize ; i++){
+        for (int i = 0 ; i < testTimes ; i++){
             int index1 = random.nextInt(segmentTree.getSize());
             int index2 = random.nextInt(segmentTree.getSize());
             int num = random.nextInt(10);
@@ -102,46 +103,24 @@ public class DemoTest {
 
     private static void testSegment3() {
         System.out.println("------------------------");
-        Integer[] data3 = {1,0,1,1};
-        SegmentTree<Integer> segmentTree3 = new SegmentTree3<>(data3,(a, b)->a+b);
-        System.out.println(segmentTree3);
-        segmentTree3.batchUpdate(2,3,1);
-        System.out.println(segmentTree3);
-        segmentTree3.set(0,2);
-        System.out.println(segmentTree3);
-        segmentTree3.batchUpdate(1,2,4);
-        System.out.println(segmentTree3);
-
-        System.out.println("----------------- ");
 
         Integer[] data4 = {0,0,4};
-        segmentTree3 = new SegmentTree3<>(data4,(a, b)->a+b);
+        SegmentTree<Integer> segmentTree3 = new SegmentTree3<>(data4,(a, b)->a+b);
         System.out.println(segmentTree3);
-        segmentTree3.batchUpdate(0,2,3);
+        segmentTree3.batchUpdate(0,2,5);
         System.out.println(segmentTree3);
         segmentTree3.set(1,3);
         System.out.println(segmentTree3);
 
         CorrectSegmentTree<Integer> corrSeg = new CorrectSegmentTree<>(data4,(a,b)->a+b);
-        corrSeg.batchUpdate(0,2,3);
+        corrSeg.batchUpdate(0,2,5);
         System.out.println(corrSeg);
         corrSeg.set(1,3);
         System.out.println(corrSeg);
 
         System.out.println("-----------");
 
-        Integer[] data5 = {0,2,4};
-        segmentTree3 = new SegmentTree3<>(data5,(a, b)->a+b);
-        System.out.println(segmentTree3);
-        segmentTree3.batchUpdate(0,2,4);
-        System.out.println(segmentTree3);
-        segmentTree3.batchUpdate(0,0,1);
-        System.out.println(segmentTree3);
-        segmentTree3.set(2,5);
-        System.out.println(segmentTree3);
-        segmentTree3.batchUpdate(1,1,8);
-        System.out.println(segmentTree3);
-//        testByComparator3(100000,5,5,5);
+        testByComparator3(100000,20,20,20);
 
     }
 

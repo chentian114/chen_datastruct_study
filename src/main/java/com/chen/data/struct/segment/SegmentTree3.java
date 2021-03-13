@@ -54,29 +54,39 @@ public class SegmentTree3<E> implements SegmentTree<E>{
 
     private E query(int nodeIndex, int left, int right, int queryL, int queryR){
         if(left == queryL && right == queryR){
-            if(left == right && lazyData[left] != null){
-                data[left] = merger.merge(data[left],lazyData[left]);
-                tree[nodeIndex] = data[left];
-                lazyData[left] = null;
+
+            E result = tree[nodeIndex];
+            for (int i = queryL ; i <= queryR; i++){
+                if(lazyData[i] != null){
+                    result = merger.merge(result,lazyData[i]);
+                }
             }
-            return tree[nodeIndex];
+
+            return result;
         }
 
-        int mid = left + (right - left)/2;
-        int lefChild = leftChild(nodeIndex);
+        int mid = left + (right - left) / 2;
+        int leftChild = leftChild(nodeIndex);
         int rightChild = rightChild(nodeIndex);
+
         if(queryL > mid){
-            return query(rightChild, mid +1 , right, queryL, queryR);
+
+            return query(rightChild, mid+1, right, queryL, queryR);
         }
         else if(queryR <= mid){
-            return query(lefChild, left, mid , queryL, queryR);
+
+            return query(leftChild, left, mid, queryL, queryR);
         }
         else {
-            E leftVal = query(lefChild, left, mid, queryL, mid);
-            E rightVal = query(rightChild, mid + 1, right, mid + 1, queryR);
+
+            E leftVal = query(leftChild, left, mid, queryL, mid);
+            E rightVal = query(rightChild, mid+1, right, mid+1, queryR);
+
+
             return merger.merge(leftVal,rightVal);
         }
     }
+
 
     @Override
     public void set(int index, E e) {
@@ -85,9 +95,9 @@ public class SegmentTree3<E> implements SegmentTree<E>{
 
     private void set(int nodeIndex, int left, int right, int index, E e){
         if(left == right && left == index){
-            lazyData[index] = null;
             data[index] = e;
             tree[nodeIndex] = e;
+            lazyData[index] = null;
             return;
         }
 
@@ -96,65 +106,23 @@ public class SegmentTree3<E> implements SegmentTree<E>{
         int rightChild = rightChild(nodeIndex);
         if(index > mid){
             set(rightChild, mid+1, right, index, e);
-            if(left == mid && lazyData[left] != null){
-                data[left] = merger.merge(data[left],lazyData[left]);
-                tree[leftChild] = data[left];
-                lazyData[left] = null;
-            }
         }
         else {
             set(leftChild, left, mid, index, e);
-            if(mid+1 == right && lazyData[right] != null){
-                data[right] = merger.merge(data[right],lazyData[right]);
-                tree[rightChild] = data[right];
-                lazyData[right] = null;
-            }
         }
         tree[nodeIndex] = merger.merge(tree[leftChild], tree[rightChild]);
     }
 
     @Override
     public void batchUpdate(int updateL, int updateR, E num) {
-        batchUpdate(0, 0, data.length-1, updateL, updateR, num);
-    }
-
-    private void batchUpdate(int nodeIndex, int left, int right, int updateL, int updateR ,E num){
-        if(left == updateL && right == updateR){
-            if(left != right) {
-                for (int i = left ; i <= right ; i++) {
-                    if (lazyData[i] != null) {
-                        lazyData[i] = merger.merge(lazyData[i], num);
-                    } else {
-                        lazyData[i] = num;
-                    }
-                    tree[nodeIndex] = merger.merge(tree[nodeIndex],num);
-                }
-            }else {
-                if(lazyData[left] != null){
-                    data[left] = merger.merge(lazyData[left],data[left]);
-                    lazyData[left] = null;
-                }
-                data[left] = merger.merge(data[left],num);
-                tree[nodeIndex] = data[left];
+        for (int i = updateL; i <= updateR ; i ++){
+            if(lazyData[i] == null){
+                lazyData[i] = num;
             }
-            return;
-        }
-
-        int mid = left + (right-left)/2;
-        int leftChild = leftChild(nodeIndex);
-        int rightChild = rightChild(nodeIndex);
-        if(updateL > mid){
-           batchUpdate(rightChild, mid+1, right, updateL, updateR, num);
-        }
-        else if(updateR <= mid){
-           batchUpdate(leftChild, left, mid, updateL, updateR, num);
-        }
-        else {
-           batchUpdate(leftChild, left, mid, updateL, mid, num);
-           batchUpdate(rightChild, mid+1, right, mid+1, updateR, num);
-        }
-        for (int i = updateL; i <= updateR; i++) {
-            tree[nodeIndex] = merger.merge(tree[nodeIndex], num);
+            else {
+                lazyData[i] = merger.merge(lazyData[i], num);
+            }
+            data[i] = merger.merge(data[i],num);
         }
     }
 
@@ -163,14 +131,16 @@ public class SegmentTree3<E> implements SegmentTree<E>{
     }
 
     public E get(int index){
-        if(lazyData[index] != null){
-            return merger.merge(data[index],lazyData[index]);
-        }
         return data[index];
     }
 
     @Override
     public String toString() {
+        buildSegmentTree(0, 0, data.length-1);
+        for (int i = 0 ; i < lazyData.length ; i++){
+            lazyData[i] = null;
+        }
+
         StringBuilder sbr = new StringBuilder("segment tree size = ").append(getSize());
         sbr.append(" data :");
         sbr.append(Arrays.toString(tree));
