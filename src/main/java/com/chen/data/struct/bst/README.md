@@ -327,6 +327,15 @@ calss Node{
 
 https://leetcode-cn.com/problems/unique-morse-code-words/
 
+国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串，比如: "a" 对应 ".-", "b" 对应 "-...", "c" 对应 "-.-.", 等等。
+
+为了方便，所有26个英文字母对应摩尔斯密码表如下：
+
+[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+给定一个单词列表，每个单词可以写成每个字母对应摩尔斯密码的组合。例如，"cab" 可以写成 "-.-..--..."，(即 "-.-." + ".-" + "-..." 字符串的结合)。我们将这样一个连接过程称作单词翻译。
+
+返回我们可以获得所有词不同单词翻译的数量。
+
 **参考代码：** [com.chen.data.struct.bst.Leetcode804UniqueMorseCodeWords](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 ### Leetcode 144.Binary Tree Preorder Traversal 二叉树前序遍历
@@ -359,12 +368,32 @@ https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
 
 https://leetcode-cn.com/problems/intersection-of-two-arrays/
 
+给定两个数组，编写一个函数来计算它们的交集。
+
+示例 1：
+- 输入：nums1 = [1,2,2,1], nums2 = [2,2]
+- 输出：[2]
+
+示例 2：
+- 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+- 输出：[9,4]
+
 **参考代码：** [com.chen.data.struct.bst.Leetcode349IntersectionOfTwoArrays](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 
 
 ### Leetcode 350.Intersection of Two Arrays II  两个数组的交集
 
 https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
+
+给定两个数组，编写一个函数来计算它们的交集。
+
+示例 1：
+- 输入：nums1 = [1,2,2,1], nums2 = [2,2]
+- 输出：[2,2]
+
+示例 2:
+- 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+- 输出：[4,9]
 
 **参考代码：** [com.chen.data.struct.bst.Leetcode350IntersectionOfTwoArrays](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/bst)
 

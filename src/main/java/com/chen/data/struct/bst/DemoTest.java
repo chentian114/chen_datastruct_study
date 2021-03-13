@@ -46,7 +46,7 @@ public class DemoTest {
         bst.remove(5);
         System.out.println(bst);
 
-//        checkCorrectBST();
+        checkCorrectBST();
 
         int[] arrs = {13,23,38,47,30};
         BSTree<Integer> bst2 = new BSTree<>();

@@ -187,6 +187,19 @@ public class BSTAlgorithmComparator {
             }
         }
 
+        if(correctBST.isEmpty() && !bst.isEmpty()){
+            System.out.println(" result1 is null result2 is not null");
+            printErrorInfo(bst,correctBST,methodEnums,data);
+            return false;
+        }
+
+        if(!correctBST.isEmpty()){
+            String levelOrder1 = correctBST.levelOrder();
+            String levelOrder2 = bst.levelOrder();
+            if (compareOrderResult(bst, correctBST, methodEnums, data, null, levelOrder1, levelOrder2))
+                return false;
+        }
+
         return true;
     }
 

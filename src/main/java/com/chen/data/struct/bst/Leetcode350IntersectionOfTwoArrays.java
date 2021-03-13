@@ -32,13 +32,7 @@ public class Leetcode350IntersectionOfTwoArrays {
                 Integer num = bstMap.get(nums2[i]);
                 num--;
                 if(num == 0){
-                    System.out.println("----------------------------");
-                    System.out.println("Before:"+bstMap.inOrder());
                     bstMap.remove(nums2[i]);
-                    System.out.println("remove:"+nums2[i]);
-                    System.out.println("After:"+bstMap.inOrder());
-                    System.out.println("----------------------------");
-
                 }else {
                     bstMap.set(nums2[i],num);
                 }

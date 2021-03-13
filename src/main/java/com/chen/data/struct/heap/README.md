@@ -205,13 +205,13 @@ https://www.nowcoder.com/ta/programmer-code-interview-guide
 
 gitee地址：[https://gitee.com/chentian114/chen_datastruct_study](https://gitee.com/chentian114/chen_datastruct_study)
 
-github地址：[https://github.com/chentian114/data-struct-and-algorithm](https://github.com/chentian114/data-struct-and-algorithm)
+github地址：[https://github.com/chentian114/chen_datastruct_study](https://github.com/chentian114/chen_datastruct_study)
 
 CSDN地址：[https://blog.csdn.net/chentian114/category_9997109.html](https://blog.csdn.net/chentian114/category_9997109.html)
 
 ## 公众号
 
-![知行chen](https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzk0NTE0MjQ2MQ==&mid=2247483654&idx=1&sn=b3b49309eca19c2fa5bfe333b7e7bdfb&send_time=)
+![知行chen](https://img-blog.csdnimg.cn/20201019220227866.jpg)
 
 ## 参考
 

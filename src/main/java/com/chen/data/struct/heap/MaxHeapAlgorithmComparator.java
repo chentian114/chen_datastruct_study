@@ -105,6 +105,25 @@ public class MaxHeapAlgorithmComparator {
                     break;
             }
         }
+
+        if (checkIsEmpty(maxHeap, correctHeap, data, methods, null)){
+            return false;
+        }
+        if(!correctHeap.isEmpty()){
+            if(correctHeap.size() != maxHeap.size() ){
+                printErrorInfo(maxHeap, correctHeap, data, methods);
+                return false;
+            }
+            while (!correctHeap.isEmpty()){
+                Integer poll1 = correctHeap.poll();
+                Integer poll2 = maxHeap.heapPop();
+                if (!poll1.equals(poll2)) {
+                    System.out.println(" result1=" + poll1 + " result2=" + poll2);
+                    printErrorInfo(maxHeap, correctHeap, data, methods);
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
