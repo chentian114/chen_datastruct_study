@@ -148,23 +148,39 @@ interface UF{
 
 ### 实现Quick Find并查集
 
+**参考代码：** [com.chen.data.struct.unionfind.UnionFind1](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/unionfind)
 
 ### 实现Quick Union并查集
 
+**参考代码：** [com.chen.data.struct.unionfind.UnionFind2](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/unionfind)
 
 ### 考虑size优化并查集
 
+**参考代码：** [com.chen.data.struct.unionfind.UnionFind3](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/unionfind)
 
 ### 基于rank优化并查集
 
+**参考代码：** [com.chen.data.struct.unionfind.UnionFind4](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/unionfind)
 
 ### 路径压缩优化并查集 
 
 比较路径压缩和非路径压缩的效率
 
+**参考代码：** [com.chen.data.struct.unionfind.UnionFind5](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/unionfind)
 
 ### Leetcode 547. Friend Circles
 
+有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。
+
+省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。
+
+给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。
+
+返回矩阵中 省份 的数量。
+
+https://leetcode-cn.com/problems/number-of-provinces
+
+**参考代码：** [com.chen.data.struct.unionfind.Leetcode547NumberOfProvinces](https://gitee.com/chentian114/chen_datastruct_study/tree/master/src/main/java/com/chen/data/struct/unionfind)
 
 ## 相关链接
 
@@ -183,4 +199,5 @@ CSDN地址：[https://blog.csdn.net/chentian114/category_9997109.html](https://b
 刘宇波《玩转数据结构》课程
 
 https://www.wiki-wiki.top/wiki/并查集
- 
+
+Leetcode
