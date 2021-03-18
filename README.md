@@ -14,6 +14,7 @@
 7. [线段树](/src/main/java/com/chen/data/struct/segment)
 8. [字典树Trie](/src/main/java/com/chen/data/struct/trie)
 8. [并查集](/src/main/java/com/chen/data/struct/unionfind)
+9. [平衡二叉树](/src/main/java/com/chen/data/struct/avl)
 
 
 [Leetcode练习](/src/main/java/com/chen/data/struct/leetcode)
